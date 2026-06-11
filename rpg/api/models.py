@@ -1,9 +1,18 @@
 from django.db import models
 
 class Conta(models.Model):
+    TIPO_CONTA_CHOICES = [
+        ('aluno', 'Aluno'),
+        ('professor', 'Professor'),
+    ]
     login = models.CharField(max_length=100, unique=True)
     senha = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
+    tipo_conta = models.CharField(
+        max_length=20, 
+        choices=TIPO_CONTA_CHOICES, 
+        default='aluno' 
+    )
 
     class Meta:
         db_table = 'conta'
@@ -11,20 +20,19 @@ class Conta(models.Model):
 class Pessoa(models.Model):
     nome = models.CharField(max_length=200)
     cpf = models.CharField(max_length=14, unique=True)
-    conta = models.OneToOneField(Conta, on_delete=models.CASCADE)
+    # Permite criar Pessoa/Aluno/Professor sem precisar de uma conta atrelada na mesma hora
+    conta = models.OneToOneField(Conta, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         db_table = 'pessoa'
 
 class Aluno(Pessoa):
-    matricula = models.CharField(max_length=20, unique=True)
     moedas = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'aluno'
 
 class Professor(Pessoa):
-    titulacao = models.CharField(max_length=100)
 
     class Meta:
         db_table = 'professor'
@@ -49,19 +57,15 @@ class Disciplina(models.Model):
 class Quests(models.Model):
     titulo = models.CharField(max_length=100)
     descricao = models.TextField()
-    resposta_correta = models.CharField(max_length=255)
+    alternativa_a = models.CharField(max_length=255, default="")
+    alternativa_b = models.CharField(max_length=255, default="")
+    alternativa_c = models.CharField(max_length=255, default="")
+    alternativa_d = models.CharField(max_length=255, default="")
+    resposta_correta = models.CharField(max_length=1) # Vai guardar só a letra correta
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'quests'
-
-class Raid(models.Model):
-    nome = models.CharField(max_length=100)
-    dificuldade = models.CharField(max_length=50)
-    disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'raid'
 
 class Personagem(models.Model):
     nome = models.CharField(max_length=100)

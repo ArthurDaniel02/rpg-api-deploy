@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class IRaidDAO(ABC):
+class IAlunoDAO(ABC):
     @abstractmethod
     def salvar(self, obj) -> bool:
         pass

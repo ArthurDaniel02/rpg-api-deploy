@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import inspect
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -132,7 +133,83 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'RPG Educacional API',
-    'DESCRIPTION': 'API REST Polimórfica para Gamificação de Disciplinas',
+    'DESCRIPTION': inspect.cleandoc
+    (""" ## API REST Polimórfica para Gamificação de Disciplinas
+    ### 1. CONTA
+    * `POST /api/conta/` - Salvar (Cria uma nova conta).
+    * `GET /api/conta/` - Consultar Todos.
+    * `GET /api/conta/<id>/` - Consultar por ID.
+    * `PUT /api/conta/<id>/` - Alterar conta existente.
+    * `DELETE /api/conta/<id>/` - Deletar conta.
+    * `POST /api/conta/login/` - Realizar Login (Valida email e senha).
+
+    ### 2. PESSOA
+    * `POST /api/pessoa/` - Salvar (Cria uma nova pessoa).
+    * `GET /api/pessoa/` - Consultar Todos.
+    * `GET /api/pessoa/<id>/` - Consultar por ID.
+    * `PUT /api/pessoa/<id>/` - Alterar pessoa.
+    * `DELETE /api/pessoa/<id>/` - Deletar pessoa.
+
+    ### 3. ALUNO
+    * `POST /api/aluno/` - Salvar (Cria um novo aluno).
+    * `GET /api/aluno/` - Consultar Todos.
+    * `GET /api/aluno/<id>/` - Consultar por ID.
+    * `PUT /api/aluno/<id>/` - Alterar aluno.
+    * `DELETE /api/aluno/<id>/` - Deletar aluno.
+    * `POST /api/aluno/comprar/` - Comprar Item (Desconta moedas e associa item).
+
+    ### 4. PROFESSOR
+    * `POST /api/professor/` - Salvar (Cria um novo professor).
+    * `GET /api/professor/` - Consultar Todos.
+    * `GET /api/professor/<id>/` - Consultar por ID.
+    * `PUT /api/professor/<id>/` - Alterar professor.
+    * `DELETE /api/professor/<id>/` - Deletar professor.
+
+    ### 5. PERSONAGEM
+    * `POST /api/personagem/` - Salvar (Cria um novo personagem).
+    * `GET /api/personagem/` - Consultar Todos.
+    * `GET /api/personagem/<id>/` - Consultar por ID.
+    * `PUT /api/personagem/<id>/` - Alterar personagem (ex: customizar avatar).
+    * `DELETE /api/personagem/<id>/` - Deletar personagem.
+
+    ### 6. DISCIPLINA
+    * `POST /api/disciplina/` - Salvar (Cria uma nova disciplina).
+    * `GET /api/disciplina/` - Consultar Todos.
+    * `GET /api/disciplina/<id>/` - Consultar por ID.
+    * `PUT /api/disciplina/<id>/` - Alterar disciplina.
+    * `DELETE /api/disciplina/<id>/` - Deletar disciplina.
+    * `POST /api/disciplina/matricular/` - Matricular Aluno.
+
+    ### 7. QUESTS
+    * `POST /api/quests/` - Salvar (Cria uma nova quest).
+    * `GET /api/quests/` - Consultar Todos.
+    * `GET /api/quests/<id>/` - Consultar por ID.
+    * `PUT /api/quests/<id>/` - Alterar quest.
+    * `DELETE /api/quests/<id>/` - Deletar quest.
+    * `POST /api/quests/responder/` - Responder Quest (Valida a resposta do aluno).
+
+    ### 8. ITEM
+    * `POST /api/item/` - Salvar (Cria um novo item na loja).
+    * `GET /api/item/` - Consultar Todos.
+    * `GET /api/item/<id>/` - Consultar por ID.
+    * `PUT /api/item/<id>/` - Alterar item.
+    * `DELETE /api/item/<id>/` - Deletar item.
+    ### Autenticação
+    Use o endpoint `/api/token/` para obter seu token e inclua no cabeçalho:
+    ```
+    Authorization: Token <sua_chave>
+    ```
+    """),
     'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
+    'SECURITY': [{'TokenAuth': []}],
+    'COMPONENTS': {
+    'securitySchemes': {
+    'TokenAuth': {
+    'type': 'apiKey',
+    'in': 'header',
+    'name': 'Authorization',
+    'description': 'Use o formato: Token <sua_chave>',
+    },
+    },
+    },
 }

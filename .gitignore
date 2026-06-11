@@ -1,0 +1,15 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+# Pasta do ambiente virtual
+venv/
+env/
+.env
+
+# Arquivos de cache do Python
+__pycache__/
+*.pyc
+
+# Banco de dados (se for usar SQLite, se for MySQL ignore esta linha)
+db.sqlite3
+
+# Arquivos de ambiente do VS Code
+.vscode/

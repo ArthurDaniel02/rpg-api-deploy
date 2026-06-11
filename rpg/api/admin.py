@@ -6,8 +6,7 @@ from .models import (
     Professor, 
     Item, 
     Disciplina, 
-    Quests, 
-    Raid, 
+    Quests,  
     Personagem, 
     Guerreiro, 
     Mago, 
@@ -22,7 +21,6 @@ admin.site.register(Professor)
 admin.site.register(Item)
 admin.site.register(Disciplina)
 admin.site.register(Quests)
-admin.site.register(Raid)
 admin.site.register(Personagem)
 admin.site.register(Guerreiro)
 admin.site.register(Mago)

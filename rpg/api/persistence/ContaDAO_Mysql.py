@@ -1,26 +1,39 @@
 from api.models import Conta as ContaModel
-from api.models_domain.Conta import Conta
 
 class ContaDAOMysql:
-    def salvar(self, conta_dom):
-        model = ContaModel(login=conta_dom.getEmail(), senha=conta_dom.getSenhaHash(), email=conta_dom.getEmail())
+    def salvar(self, c):
+        model = ContaModel(
+            login=c.getLogin(), 
+            senha=c.getSenha(), 
+            email=c.getEmail(),
+            tipo_conta=c.getTipoConta()
+        )
+        model.save()
+        return True
+        
+    def autenticar(self, email, senha):
+        return ContaModel.objects.filter(email=email, senha=senha).first()
+    
+    def alterar(self, c):
+        model = ContaModel.objects.get(id=c.getIdConta())
+        
+        if c.getLogin() is not None: model.login = c.getLogin()
+        if c.getSenha() is not None: model.senha = c.getSenha()
+        if c.getEmail() is not None: model.email = c.getEmail()
+        if c.getTipoConta() is not None: model.tipo_conta = c.getTipoConta()
+        
         model.save()
         return True
 
-    def alterar(self, conta_dom):
-        model = ContaModel.objects.get(login=conta_dom.getEmail())
-        model.senha = conta_dom.getSenhaHash()
-        model.save()
-        return True
-
-    def deletar(self, conta_dom):
-        ContaModel.objects.get(login=conta_dom.getEmail()).delete()
+    def deletar(self, c):
+        ContaModel.objects.filter(id=c.getIdConta()).delete()
         return True
 
     def consultar(self):
         return list(ContaModel.objects.all().values())
 
-    def consultarbyId(self, conta_dom):
+    def consultarbyId(self, c):
         try:
-            return ContaModel.objects.filter(id=conta_dom.getIdConta()).values().first()
-        except: return None
+            return ContaModel.objects.filter(id=c.getIdConta()).values().first()
+        except: 
+            return None

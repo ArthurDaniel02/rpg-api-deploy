@@ -13,7 +13,6 @@ CONFIG = {
     
     'IDisciplinaDAO': 'api.persistence.DisciplinaDAO_Mysql.DisciplinaDAOMysql',
     'IQuestsDAO': 'api.persistence.QuestsDAO_Mysql.QuestsDAOMysql',
-    'IRaidDAO': 'api.persistence.RaidDAO_Mysql.RaidDAOMysql',
     'IItemDAO': 'api.persistence.ItemDAO_Mysql.ItemDAOMysql',
 
     'IContaController': 'api.controllers.ContaController.ContaControllerImpl',
@@ -28,7 +27,6 @@ CONFIG = {
     
     'IDisciplinaController': 'api.controllers.DisciplinaController.DisciplinaControllerImpl',
     'IQuestsController': 'api.controllers.QuestsController.QuestsControllerImpl',
-    'IRaidController': 'api.controllers.RaidController.RaidControllerImpl',
     'IItemController': 'api.controllers.ItemController.ItemControllerImpl',
 }
 

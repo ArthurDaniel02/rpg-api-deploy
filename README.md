@@ -1,11 +1,95 @@
-# RPG EDUCACIONAL API 🚀
+# RPG EDUCACIONAL API REST 🚀
 
-Este projeto consiste em uma API REST desenvolvida em **Python** utilizando **Django** e **Django REST Framework (DRF)**. O foco central é a aplicação prática de **Polimorfismo, Inversão de Dependência e Arquitetura em Camadas**, utilizando interfaces baseadas em Classes Abstratas para simular contratos e injeção dinâmica de implementações.
+Este projeto consiste em uma API REST desenvolvida em **Python** utilizando **Django** e **Django REST Framework (DRF)**, com base nos diagramas de classes produzidos para o projeto RPG educacional, desenvolvido na matéria Engenharia de Software 2.
+
+O foco é a aplicação prática de **Polimorfismo, Inversão de Dependência e Arquitetura em Camadas**, utilizando interfaces baseadas em Classes Abstratas para simular contratos e injeção dinâmica de implementações.
+
+## 🗺️ Rotas REST Implementadas
+
+Abaixo estão as principais rotas desenvolvidas para atender as regras de negócio do RPG Educacional. Todas recebem e retornam dados em formato JSON.
+
+### 1. CONTA
+* `POST /api/conta/` - Salvar (Cria uma nova conta).
+* `GET /api/conta/` - Consultar Todos.
+* `GET /api/conta/<id>/` - Consultar por ID.
+* `PUT /api/conta/<id>/` - Alterar conta existente.
+* `DELETE /api/conta/<id>/` - Deletar conta.
+* `POST /api/conta/login/` - Realizar Login (Valida email e senha).
+
+### 2. PESSOA
+* `POST /api/pessoa/` - Salvar (Cria uma nova pessoa).
+* `GET /api/pessoa/` - Consultar Todos.
+* `GET /api/pessoa/<id>/` - Consultar por ID.
+* `PUT /api/pessoa/<id>/` - Alterar pessoa.
+* `DELETE /api/pessoa/<id>/` - Deletar pessoa.
+
+### 3. ALUNO
+* `POST /api/aluno/` - Salvar (Cria um novo aluno).
+* `GET /api/aluno/` - Consultar Todos.
+* `GET /api/aluno/<id>/` - Consultar por ID.
+* `PUT /api/aluno/<id>/` - Alterar aluno.
+* `DELETE /api/aluno/<id>/` - Deletar aluno.
+* `POST /api/aluno/comprar/` - Comprar Item (Desconta moedas e associa item).
+
+### 4. PROFESSOR
+* `POST /api/professor/` - Salvar (Cria um novo professor).
+* `GET /api/professor/` - Consultar Todos.
+* `GET /api/professor/<id>/` - Consultar por ID.
+* `PUT /api/professor/<id>/` - Alterar professor.
+* `DELETE /api/professor/<id>/` - Deletar professor.
+
+### 5. PERSONAGEM
+* `POST /api/personagem/` - Salvar (Cria um novo personagem).
+* `GET /api/personagem/` - Consultar Todos.
+* `GET /api/personagem/<id>/` - Consultar por ID.
+* `PUT /api/personagem/<id>/` - Alterar personagem (ex: customizar avatar).
+* `DELETE /api/personagem/<id>/` - Deletar personagem.
+
+### 6. DISCIPLINA
+* `POST /api/disciplina/` - Salvar (Cria uma nova disciplina).
+* `GET /api/disciplina/` - Consultar Todos.
+* `GET /api/disciplina/<id>/` - Consultar por ID.
+* `PUT /api/disciplina/<id>/` - Alterar disciplina.
+* `DELETE /api/disciplina/<id>/` - Deletar disciplina.
+* `POST /api/disciplina/matricular/` - Matricular Aluno.
+
+### 7. QUESTS
+* `POST /api/quests/` - Salvar (Cria uma nova quest).
+* `GET /api/quests/` - Consultar Todos.
+* `GET /api/quests/<id>/` - Consultar por ID.
+* `PUT /api/quests/<id>/` - Alterar quest.
+* `DELETE /api/quests/<id>/` - Deletar quest.
+* `POST /api/quests/responder/` - Responder Quest (Valida a resposta do aluno).
+
+### 8. ITEM
+* `POST /api/item/` - Salvar (Cria um novo item na loja).
+* `GET /api/item/` - Consultar Todos.
+* `GET /api/item/<id>/` - Consultar por ID.
+* `PUT /api/item/<id>/` - Alterar item.
+* `DELETE /api/item/<id>/` - Deletar item.
+
+## 🖥️ Telas da Aplicação (Testes Funcionais)
+
+Como este projeto é estritamente uma API REST (Back-end), as "telas" da aplicação consistem nas interfaces de documentação e administração gráfica.
+
+### 1. Swagger UI (Documentação Interativa)
+A interface do Swagger permite visualizar e testar todas as rotas listadas acima diretamente pelo navegador.
+* **Link para teste:** `http://localhost:8000/api/docs/`
+
+![Tela do Swagger]([INSERIR_O_NOME_DA_SUA_IMAGEM_DO_SWAGGER_AQUI.png])  
+*(Exemplo de teste funcional interativo via Swagger)*
+
+### 2. Painel Administrativo (Django Admin)
+Interface gráfica gerada para gerenciamento direto do banco de dados (MySQL), permitindo a inserção e verificação visual dos dados.
+* **Link para teste:** `http://localhost:8000/admin/`
+* **Credenciais de Teste:** Usuário: `admin` | Senha: `admin12345`
+
+![Tela do Django Admin]([INSERIR_O_NOME_DA_SUA_IMAGEM_DO_ADMIN_AQUI.png])  
+*(Visão geral e gerenciamento dos modelos do RPG no banco de dados)*
 
 ## 📚 Objetivo
 
-Demonstrar a aplicação de padrões de projeto e princípios de POO em um framework (Django),
-garantindo:
+Demonstrar a aplicação de padrões de projeto e princípios de POO em um framework (Django), garantindo:
 
 * **Desacoplamento:** Camadas de Controller e DAO isoladas.
 * **Polimorfismo:** Troca dinâmica de implementações via `config.py`.
@@ -16,19 +100,14 @@ garantindo:
 O projeto organiza a lógica de persistência e controle em três partes:
 
 ### 1. Controllers
-
 Baseados em interfaces (`api/interfaces/controllers/`), definem métodos CRUD (`salvar`, `alterar`, `deletar`, `consultar`, `consultarbyId`).
-
 * **Exemplo:** `ContaControllerImpl` implementa a lógica, delegando a persistência ao DAO injetado.
 
 ### 2. DAO (Data Access Object)
-
 Baseados em interfaces (`api/interfaces/daos/`), abstraem a comunicação com o banco de dados.
-
 * **Implementação:** `NomeEntidadeDAO_Mysql` realiza a persistência via **Django ORM** e **MySQL**.
 
 ### 3. Injeção de Dependência via `config.py`
-
 O arquivo `api/config.py` atua como o orquestrador. Ele define quais classes concretas serão instanciadas em tempo de execução:
 
 ```python
@@ -37,8 +116,6 @@ CONFIG = {
     'IContaDAO': 'api.persistence.ContaDAO_Mysql.ContaDAOMysql',
     'IContaController': 'api.controllers.ContaController.ContaControllerImpl',
 }
-
-```
 
 Isso permite alterar o comportamento da aplicação (trocar o DAO de MySQL para outro, por exemplo) sem alterar o código do Controller ou da View.
 
@@ -61,8 +138,8 @@ Isso permite alterar o comportamento da aplicação (trocar o DAO de MySQL para 
 
 ```bash
 # 1. Clone o repositório
-git clone <seu-link-github>
-cd <nome-do-projeto>
+git clone https://github.com/ArthurDaniel02/RPGEDUCACIONAL2.0/
+cd rpg
 
 # 2. Ative o ambiente virtual
 source venv/bin/activate
@@ -71,7 +148,9 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # 4. Configure o banco local (MySQL Workbench)
-# Crie o banco: CREATE DATABASE rpg_educacional_db;
+# Crie o banco: 
+CREATE DATABASE rpg_educacional_db;
+USE rpg_educacional_db;
 
 # 5. Aplique as migrações e rode o servidor
 python manage.py migrate
