@@ -120,10 +120,10 @@ CONFIG = {
     'IContaDAO': 'api.persistence.ContaDAO_Mysql.ContaDAOMysql',
     'IContaController': 'api.controllers.ContaController.ContaControllerImpl',
 }
-
+```
 Isso permite alterar o comportamento da aplicação (trocar o DAO de MySQL para outro, por exemplo) sem alterar o código do Controller ou da View.
 
-## ⚙️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 * **Python 3.14**
 * **Django 6.0.6**
@@ -131,14 +131,14 @@ Isso permite alterar o comportamento da aplicação (trocar o DAO de MySQL para 
 * **MySQL** (Banco de dados local via MySQL Workbench)
 * **drf-spectacular** (Swagger/OpenAPI)
 
-## 🏗️ Fluxo da Aplicação
+## Fluxo da Aplicação
 
 1. A **View** recebe a requisição HTTP.
 2. A View chama a função `inject()` de `config.py`.
 3. O `config.py` instancia dinamicamente o **Controller** e seu respectivo **DAO**.
 4. O Controller processa a regra de negócio e retorna um dicionário padrão para a View, que responde com um `JsonResponse`.
 
-## 🛠️ Execução
+## Execução
 
 ```bash
 # 1. Clone o repositório
@@ -165,11 +165,11 @@ python manage.py runserver
 **Servidor:** `http://localhost:8000/api/`
 **Documentação (Swagger):** `http://localhost:8000/api/docs/`
 
-## 🎯 Conclusão
+## Conclusão
 
 O projeto prova que, mesmo utilizando frameworks opinativos como o Django, é possível aplicar conceitos avançados de engenharia de software para garantir um código modular, extensível e testável, separando a lógica de negócio da infraestrutura de persistência.
 
-## 👨‍💻 Grupo
+## Grupo
 
 * Arthur Daniel Ribeiro Pereira Dantas Lourenço
 * Danilo Moraes Borges Piquiá
