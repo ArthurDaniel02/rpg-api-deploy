@@ -79,8 +79,8 @@ Como este projeto é estritamente uma API REST (Back-end), as "telas" da aplica�
 A interface do Swagger permite visualizar e testar todas as rotas listadas acima diretamente pelo navegador.
 * **Link para teste:** `http://localhost:8000/api/docs/`
 
-![Tela Exemplo 1 do Swagger]([tela1.png])  
-![Tela Exemplo 2 do Swagger]([tela2.png])  
+![Tela Exemplo 1 do Swagger](tela1.png)  
+![Tela Exemplo 2 do Swagger](tela2.png)  
 *(Exemplo de teste funcional interativo via Swagger)*
 
 ### 2. Painel Administrativo (Django Admin)
@@ -88,7 +88,7 @@ Interface gráfica gerada para gerenciamento direto do banco de dados (MySQL), p
 * **Link para teste:** `http://localhost:8000/admin/`
 * **Credenciais de Teste:** Usuário: `admin` | Senha: `adminsenha`
 
-![Tela do Django Admin]([tela3.png])  
+![Tela do Django Admin](tela3.png)  
 *(Visão geral e gerenciamento dos modelos do RPG no banco de dados)*
 
 ## 📚 Objetivo
