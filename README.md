@@ -1,8 +1,10 @@
 # RPG EDUCACIONAL API REST 🚀
 
+** [TESTE A API HOSPEDADA NO SWAGGER CLICANDO AQUI](https://rpg-api-deploy.onrender.com/api/docs/) **
+
 Este projeto consiste em uma API REST desenvolvida em **Python** utilizando **Django** e **Django REST Framework (DRF)**, com base nos diagramas de classes produzidos para o projeto RPG educacional, desenvolvido na matéria Engenharia de Software 2.
 
-O foco é a aplicação prática de **Polimorfismo, Inversão de Dependência e Arquitetura em Camadas**, utilizando interfaces baseadas em Classes Abstratas para simular contratos e injeção dinâmica de implementações.
+O foco é a aplicação prática de **Polimorfismo, Inversão de Dependência e Arqauitetura em Camadas**, utilizando interfaces baseadas em Classes Abstratas para simular contratos e injeção dinâmica de implementações.
 
 ## 🗺️ Rotas REST Implementadas
 
@@ -77,7 +79,7 @@ Como este projeto é estritamente uma API REST (Back-end), as "telas" da aplica�
 
 ### 1. Swagger UI (Documentação Interativa)
 A interface do Swagger permite visualizar e testar todas as rotas listadas acima diretamente pelo navegador.
-* **Link para teste:** `http://localhost:8000/api/docs/`
+* **Link para teste na Nuvem:** [https://rpg-api-deploy.onrender.com/api/docs/](https://rpg-api-deploy.onrender.com/api/docs/)
 
 ![Tela Exemplo 1 do Swagger](docs/tela1.png)  
 ![Tela Exemplo 2 do Swagger](docs/tela2.png)  
@@ -85,7 +87,7 @@ A interface do Swagger permite visualizar e testar todas as rotas listadas acima
 
 ### 2. Painel Administrativo (Django Admin)
 Interface gráfica gerada para gerenciamento direto do banco de dados (MySQL), permitindo a inserção e verificação visual dos dados.
-* **Link para teste:** `http://localhost:8000/admin/`
+* **Link para teste na Nuvem:** [https://rpg-api-deploy.onrender.com/admin/](https://rpg-api-deploy.onrender.com/admin/)
 * **Credenciais de Teste:** Usuário: `admin` | Senha: `adminsenha`
 
 ![Tela do Django Admin](docs/tela3.png)  
@@ -129,6 +131,8 @@ Isso permite alterar o comportamento da aplicação (trocar o DAO de MySQL para 
 * **Django 6.0.6**
 * **Django REST Framework**
 * **MySQL** (Banco de dados local via MySQL Workbench)
+* **PostgreSQL** (Banco de dados em produção via Render)
+* **Render**  (Hospedagem Cloud)
 * **drf-spectacular** (Swagger/OpenAPI)
 
 ## Fluxo da Aplicação
@@ -177,4 +181,4 @@ O projeto prova que, mesmo utilizando frameworks opinativos como o Django, é po
 
 ---
 
-*Nota: Este projeto utiliza um banco de dados MySQL rodando localmente (localhost:3306).*
+*Nota: Este projeto utiliza um banco de dados MySQL rodando localmente (localhost:3306) e PostgreSQL no ambiente de produção hospedado no Render..*
