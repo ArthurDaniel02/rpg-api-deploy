@@ -122,3 +122,11 @@ class AlunoControllerImpl(IAlunoController):
             return {"data": {"erro": "Saldo insuficiente"}, "status": 400}
         except Exception as e:
             return {"data": {"erro": f"Erro interno na compra: {str(e)}"}, "status": 500}
+    def consultarItens(self, request, pk):
+        try:
+            a_obj = Aluno()
+            a_obj.setIdPessoa(pk)
+            res = self._aluno_dao.consultarItens(a_obj)
+            return {"data": res, "status": 200}
+        except Exception as e:
+            return {"data": {"erro": str(e)}, "status": 500}

@@ -29,6 +29,7 @@ class QuestsControllerImpl(IQuestsController):
             q_obj.setAlternativaC(dados.get('alternativa_c', ''))
             q_obj.setAlternativaD(dados.get('alternativa_d', ''))
             q_obj.setRespostaCorreta(resposta)
+            q_obj.setRecompensa(dados.get('recompensa', 50))
             q_obj.addDisciplina(dados.get('disciplina_id'))
             
             self._quests_dao.salvar(q_obj)
@@ -103,7 +104,7 @@ class QuestsControllerImpl(IQuestsController):
 
             resposta_certa = quest_data.get('resposta_correta', '').strip().upper()
             resposta_enviada = str(resposta_aluno).strip().upper()
-
+            valor_premio = quest_data.get('recompensa', 50)
             if resposta_enviada == resposta_certa:
                 if self._aluno_dao:
                     a_req = Aluno()
@@ -117,11 +118,11 @@ class QuestsControllerImpl(IQuestsController):
                         a_obj.setCpf(aluno_data['cpf'])
                         a_obj.addConta(aluno_data.get('conta_id'))
                         
-                        novo_saldo = aluno_data.get('moedas', 0) + 50
+                        novo_saldo = aluno_data.get('moedas', 0) + valor_premio
                         a_obj.setMoedas(novo_saldo)
                         self._aluno_dao.alterar(a_obj)
                         
-                        return {"data": {"mensagem": "Acerto Crítico! Você ganhou 50 moedas.", "saldo_atual": novo_saldo}, "status": 200}
+                        return {"data": {"mensagem": "Acerto Crítico! Você ganhou {valor_premio} moedas.", "saldo_atual": novo_saldo}, "status": 200}
                 
                 return {"data": {"mensagem": "Resposta Correta!"}, "status": 200}
             

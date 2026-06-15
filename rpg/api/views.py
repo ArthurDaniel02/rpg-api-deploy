@@ -13,7 +13,7 @@ professor_schema = {"application/json": {"type": "object", "properties": {"nome"
 personagem_schema_create = {"application/json": {"type": "object", "properties": {"nome": {"type": "string"}, "classe": {"type": "string", "enum": ["Mago", "Guerreiro", "Arqueiro"]}, "aluno_id": {"type": "integer"}}}}
 personagem_schema_update = {"application/json": {"type": "object", "properties": {"nome": {"type": "string"}, "nivel": {"type": "integer"}, "aluno_id": {"type": "integer"}}}}
 disciplina_schema = {"application/json": {"type": "object", "properties": {"nome": {"type": "string"}, "codigo": {"type": "string"}, "professor_id": {"type": "integer"}}}}
-quest_schema = {"application/json": {"type": "object", "properties": {"titulo": {"type": "string"}, "descricao": {"type": "string"}, "alternativa_a": {"type": "string"}, "alternativa_b": {"type": "string"}, "alternativa_c": {"type": "string"}, "alternativa_d": {"type": "string"}, "resposta_correta": {"type": "string", "enum": ["A", "B", "C", "D"]}, "disciplina_id": {"type": "integer"}}}}
+quest_schema = {"application/json": {"type": "object", "properties": {"titulo": {"type": "string"}, "descricao": {"type": "string"}, "alternativa_a": {"type": "string"}, "alternativa_b": {"type": "string"}, "alternativa_c": {"type": "string"}, "alternativa_d": {"type": "string"}, "resposta_correta": {"type": "string", "enum": ["A", "B", "C", "D"]}, "recompensa": {"type": "integer"}, "disciplina_id": {"type": "integer"}}}}
 item_schema = {"application/json": {"type": "object", "properties": {"nome": {"type": "string"}, "preco": {"type": "integer"}, "descricao": {"type": "string"}}}}
 
 # ==========================================
@@ -104,7 +104,14 @@ def aluno_comprar(request):
     ctrl._item_dao = dao_i
     res = ctrl.comprarItem(request)
     return JsonResponse(res['data'], status=res['status'])
-
+@extend_schema(summary="Itens do Aluno", tags=['Alunos'])
+@api_view(['GET'])
+@csrf_exempt
+def aluno_itens(request, pk):
+    dao = inject('IAlunoDAO')
+    ctrl = inject('IAlunoController', dao_instance=dao)
+    res = ctrl.consultarItens(request, pk)
+    return JsonResponse(res['data'], status=res['status'], safe=False)
 # ==========================================
 # 4. PROFESSOR
 # ==========================================
@@ -127,7 +134,14 @@ def professor_detail(request, pk):
     elif request.method == 'DELETE': res = ctrl.deletar(request, pk)
     else: res = ctrl.consultarbyId(request, pk)
     return JsonResponse(res['data'], status=res['status'], safe=False)
-
+@extend_schema(summary="Disciplinas do Professor", tags=['Professores'])
+@api_view(['GET'])
+@csrf_exempt
+def professor_disciplinas(request, pk):
+    dao = inject('IProfessorDAO')
+    ctrl = inject('IProfessorController', dao_instance=dao)
+    res = ctrl.consultarDisciplinas(request, pk)
+    return JsonResponse(res['data'], status=res['status'], safe=False)
 # ==========================================
 # 5. PERSONAGEM
 # ==========================================
@@ -187,7 +201,14 @@ def disciplina_matricular(request):
     ctrl = inject('IDisciplinaController', dao_instance=dao)
     res = ctrl.matricularAluno(request)
     return JsonResponse(res['data'], status=res['status'])
-
+@extend_schema(summary="Alunos da Disciplina", tags=['Disciplinas'])
+@api_view(['GET'])
+@csrf_exempt
+def disciplina_alunos(request, pk):
+    dao = inject('IDisciplinaDAO')
+    ctrl = inject('IDisciplinaController', dao_instance=dao)
+    res = ctrl.consultarAlunos(request, pk)
+    return JsonResponse(res['data'], status=res['status'], safe=False)
 # ==========================================
 # 7. QUESTS
 # ==========================================

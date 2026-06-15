@@ -10,6 +10,7 @@ class QuestsDAOMysql:
             alternativa_c=q.getAlternativaC(),
             alternativa_d=q.getAlternativaD(),
             resposta_correta=q.getRespostaCorreta(), 
+            recompensa=q.getRecompensa(),
             disciplina_id=q.getDisciplina()
         )
         model.save()
@@ -25,6 +26,7 @@ class QuestsDAOMysql:
         if q.getAlternativaC() is not None: m.alternativa_c = q.getAlternativaC()
         if q.getAlternativaD() is not None: m.alternativa_d = q.getAlternativaD()
         if q.getRespostaCorreta() is not None: m.resposta_correta = q.getRespostaCorreta()
+        if q.getRecompensa() is not None: m.recompensa = q.getRecompensa() 
         if q.getDisciplina() is not None: m.disciplina_id = q.getDisciplina()
         
         m.save()

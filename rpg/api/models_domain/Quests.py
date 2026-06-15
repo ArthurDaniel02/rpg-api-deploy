@@ -9,6 +9,7 @@ class Quests:
         self._alternativa_d = None
         self._respostaCorreta = None
         self._disciplina = None
+        self._recompensa = None
         self._alunos = []
     
     def add(self): return True
@@ -42,3 +43,6 @@ class Quests:
     
     def addAluno(self, a): self._alunos.append(a)
     def getAlunos(self): return self._alunos
+
+    def setRecompensa(self, r): self._recompensa = r
+    def getRecompensa(self): return self._recompensa

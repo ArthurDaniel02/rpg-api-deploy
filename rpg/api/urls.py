@@ -15,10 +15,12 @@ urlpatterns = [
     path('aluno/', views.aluno_list, name='aluno_list'),
     path('aluno/<int:pk>/', views.aluno_detail, name='aluno_detail'),
     path('aluno/comprar/', views.aluno_comprar, name='aluno_comprar'),
+    path('aluno/<int:pk>/itens/', views.aluno_itens),
     
     # 4. PROFESSOR
     path('professor/', views.professor_list, name='professor_list'),
     path('professor/<int:pk>/', views.professor_detail, name='professor_detail'),
+    path('professor/<int:pk>/disciplinas/', views.professor_disciplinas),
     
     # 5. PERSONAGEM
     path('personagem/', views.personagem_list, name='personagem_list'),
@@ -28,6 +30,7 @@ urlpatterns = [
     path('disciplina/', views.disciplina_list, name='disciplina_list'),
     path('disciplina/<int:pk>/', views.disciplina_detail, name='disciplina_detail'),
     path('disciplina/matricular/', views.disciplina_matricular, name='disciplina_matricular'),
+    path('disciplina/<int:pk>/alunos/', views.disciplina_alunos),
     
     # 7. QUESTS
     path('quests/', views.quests_list, name='quests_list'),

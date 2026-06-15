@@ -1,5 +1,5 @@
 from api.models import Professor as ProfessorModel
-
+from api.models import Disciplina as DisciplinaModel
 class ProfessorDAOMysql:
     def salvar(self, p):
         model = ProfessorModel(
@@ -33,3 +33,8 @@ class ProfessorDAOMysql:
             return ProfessorModel.objects.filter(id=p.getIdPessoa()).values().first()
         except:
             return None
+    def consultarDisciplinas(self, p):
+        try:
+            return list(DisciplinaModel.objects.filter(professor_id=p.getIdPessoa()).values())
+        except Exception:
+            return []

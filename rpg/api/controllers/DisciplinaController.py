@@ -88,3 +88,11 @@ class DisciplinaControllerImpl(IDisciplinaController):
                 
         except Exception as e:
             return {"data": {"erro": f"Erro interno durante a matrícula: {str(e)}"}, "status": 500}
+    def consultarAlunos(self, request, pk):
+        try:
+            d_obj = Disciplina()
+            d_obj.setIdDisciplina(pk)
+            res = self._disciplina_dao.consultarAlunos(d_obj)
+            return {"data": res, "status": 200}
+        except Exception as e:
+            return {"data": {"erro": str(e)}, "status": 500}

@@ -78,3 +78,12 @@ class ProfessorControllerImpl(IProfessorController):
         
         res = self._professor_dao.consultarbyId(prof_obj)
         return {"data": res, "status": 200 if res else 404}
+    
+    def consultarDisciplinas(self, request, pk):
+        try:
+            p_obj = Professor()
+            p_obj.setIdPessoa(pk)
+            res = self._professor_dao.consultarDisciplinas(p_obj)
+            return {"data": res, "status": 200}
+        except Exception as e:
+            return {"data": {"erro": str(e)}, "status": 500}

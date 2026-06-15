@@ -44,3 +44,9 @@ class DisciplinaDAOMysql:
             return True
         except (DisciplinaModel.DoesNotExist, AlunoModel.DoesNotExist):
             return False
+    def consultarAlunos(self, d):
+        try:
+            m = DisciplinaModel.objects.get(id=d.getIdDisciplina())
+            return list(m.alunos.all().values())
+        except Exception:
+            return []

@@ -34,3 +34,11 @@ class AlunoDAOMysql:
             return AlunoModel.objects.filter(id=a.getIdPessoa()).values().first()
         except:
             return None
+        
+    def consultarItens(self, a):
+        try:
+            m = AlunoModel.objects.get(id=a.getIdPessoa())
+          
+            return list(m.itens.all().values()) 
+        except Exception:
+            return []

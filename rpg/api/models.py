@@ -60,6 +60,7 @@ class Quests(models.Model):
     alternativa_b = models.CharField(max_length=255, default="")
     alternativa_c = models.CharField(max_length=255, default="")
     alternativa_d = models.CharField(max_length=255, default="")
+    recompensa = models.IntegerField(default=50)
     resposta_correta = models.CharField(max_length=1) 
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
 
