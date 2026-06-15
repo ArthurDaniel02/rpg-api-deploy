@@ -3,6 +3,7 @@ from django.db import IntegrityError
 from api.interfaces.controllers.IAlunoController import IAlunoController
 from api.models_domain.Aluno import Aluno
 from api.models_domain.Item import Item
+from django.core.exceptions import ObjectDoesNotExist
 
 class AlunoControllerImpl(IAlunoController):
     def __init__(self, aluno_dao=None, item_dao=None):
@@ -126,7 +127,18 @@ class AlunoControllerImpl(IAlunoController):
         try:
             a_obj = Aluno()
             a_obj.setIdPessoa(pk)
+            
             res = self._aluno_dao.consultarItens(a_obj)
             return {"data": res, "status": 200}
+            
+        except ObjectDoesNotExist:
+            return {"data": {"erro": f"Aluno com ID {pk} não foi encontrado no banco de dados."}, "status": 404}
         except Exception as e:
-            return {"data": {"erro": str(e)}, "status": 500}
+            
+            return {
+                "data": {
+                    "erro": f"Erro ao listar itens: {str(e)}.",
+                    "ajuda": "Verifique no seu arquivo api/models.py se o relacionamento ManyToMany com Item chama-se 'itens' ou se está definido no modelo Item."
+                }, 
+                "status": 500
+            }

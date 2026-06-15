@@ -156,7 +156,8 @@ SPECTACULAR_SETTINGS = {
     * `GET /api/aluno/<id>/` - Consultar por ID.
     * `PUT /api/aluno/<id>/` - Alterar aluno.
     * `DELETE /api/aluno/<id>/` - Deletar aluno.
-    * `POST /api/aluno/comprar/` - Comprar Item (Desconta moedas e associa item).
+    * `POST /api/aluno/comprar/` - Comprar Item (Desconta moedas e associa item ao inventário).
+    * `GET /api/aluno/<id>/itens/` - Consultar itens comprados e presentes no inventário do aluno.
 
     ### 4. PROFESSOR
     * `POST /api/professor/` - Salvar (Cria um novo professor).
@@ -164,12 +165,13 @@ SPECTACULAR_SETTINGS = {
     * `GET /api/professor/<id>/` - Consultar por ID.
     * `PUT /api/professor/<id>/` - Alterar professor.
     * `DELETE /api/professor/<id>/` - Deletar professor.
+    * `GET /api/professor/<id>/disciplinas/` - Consultar todas as disciplinas ministradas pelo professor.
 
     ### 5. PERSONAGEM
-    * `POST /api/personagem/` - Salvar (Cria um novo personagem).
+    * `POST /api/personagem/` - Salvar (Cria um novo personagem, operando como uma *Factory* para Mago, Guerreiro ou Arqueiro).
     * `GET /api/personagem/` - Consultar Todos.
     * `GET /api/personagem/<id>/` - Consultar por ID.
-    * `PUT /api/personagem/<id>/` - Alterar personagem (ex: customizar avatar).
+    * `PUT /api/personagem/<id>/` - Alterar personagem.
     * `DELETE /api/personagem/<id>/` - Deletar personagem.
 
     ### 6. DISCIPLINA
@@ -178,15 +180,16 @@ SPECTACULAR_SETTINGS = {
     * `GET /api/disciplina/<id>/` - Consultar por ID.
     * `PUT /api/disciplina/<id>/` - Alterar disciplina.
     * `DELETE /api/disciplina/<id>/` - Deletar disciplina.
-    * `POST /api/disciplina/matricular/` - Matricular Aluno.
+    * `POST /api/disciplina/matricular/` - Matricular Aluno na disciplina.
+    * `GET /api/disciplina/<id>/alunos/` - Consultar a lista de todos os alunos matriculados na disciplina.
 
     ### 7. QUESTS
-    * `POST /api/quests/` - Salvar (Cria uma nova quest).
+    * `POST /api/quests/` - Salvar (Cria uma nova quest de múltipla escolha com recompensa customizável).
     * `GET /api/quests/` - Consultar Todos.
     * `GET /api/quests/<id>/` - Consultar por ID.
     * `PUT /api/quests/<id>/` - Alterar quest.
     * `DELETE /api/quests/<id>/` - Deletar quest.
-    * `POST /api/quests/responder/` - Responder Quest (Valida a resposta do aluno).
+    * `POST /api/quests/responder/` - Responder Quest (Valida a resposta e deposita a recompensa em moedas na conta do aluno).
 
     ### 8. ITEM
     * `POST /api/item/` - Salvar (Cria um novo item na loja).

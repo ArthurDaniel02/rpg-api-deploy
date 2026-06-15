@@ -29,7 +29,8 @@ Abaixo estão as principais rotas desenvolvidas para atender as regras de negóc
 * `GET /api/aluno/<id>/` - Consultar por ID.
 * `PUT /api/aluno/<id>/` - Alterar aluno.
 * `DELETE /api/aluno/<id>/` - Deletar aluno.
-* `POST /api/aluno/comprar/` - Comprar Item (Desconta moedas e associa item).
+* `POST /api/aluno/comprar/` - Comprar Item (Desconta moedas e associa item ao inventário).
+* `GET /api/aluno/<id>/itens/` - Consultar itens comprados e presentes no inventário do aluno.
 
 ### 4. PROFESSOR
 * `POST /api/professor/` - Salvar (Cria um novo professor).
@@ -37,12 +38,13 @@ Abaixo estão as principais rotas desenvolvidas para atender as regras de negóc
 * `GET /api/professor/<id>/` - Consultar por ID.
 * `PUT /api/professor/<id>/` - Alterar professor.
 * `DELETE /api/professor/<id>/` - Deletar professor.
+* `GET /api/professor/<id>/disciplinas/` - Consultar todas as disciplinas ministradas pelo professor.
 
 ### 5. PERSONAGEM
-* `POST /api/personagem/` - Salvar (Cria um novo personagem).
+* `POST /api/personagem/` - Salvar (Cria um novo personagem, operando como uma *Factory* para Mago, Guerreiro ou Arqueiro).
 * `GET /api/personagem/` - Consultar Todos.
 * `GET /api/personagem/<id>/` - Consultar por ID.
-* `PUT /api/personagem/<id>/` - Alterar personagem (ex: customizar avatar).
+* `PUT /api/personagem/<id>/` - Alterar personagem.
 * `DELETE /api/personagem/<id>/` - Deletar personagem.
 
 ### 6. DISCIPLINA
@@ -51,15 +53,16 @@ Abaixo estão as principais rotas desenvolvidas para atender as regras de negóc
 * `GET /api/disciplina/<id>/` - Consultar por ID.
 * `PUT /api/disciplina/<id>/` - Alterar disciplina.
 * `DELETE /api/disciplina/<id>/` - Deletar disciplina.
-* `POST /api/disciplina/matricular/` - Matricular Aluno.
+* `POST /api/disciplina/matricular/` - Matricular Aluno na disciplina.
+* `GET /api/disciplina/<id>/alunos/` - Consultar a lista de todos os alunos matriculados na disciplina.
 
 ### 7. QUESTS
-* `POST /api/quests/` - Salvar (Cria uma nova quest).
+* `POST /api/quests/` - Salvar (Cria uma nova quest de múltipla escolha com recompensa customizável).
 * `GET /api/quests/` - Consultar Todos.
 * `GET /api/quests/<id>/` - Consultar por ID.
 * `PUT /api/quests/<id>/` - Alterar quest.
 * `DELETE /api/quests/<id>/` - Deletar quest.
-* `POST /api/quests/responder/` - Responder Quest (Valida a resposta do aluno e distribui recompensas).
+* `POST /api/quests/responder/` - Responder Quest (Valida a resposta e deposita a recompensa em moedas na conta do aluno).
 
 ### 8. ITEM
 * `POST /api/item/` - Salvar (Cria um novo item na loja).
@@ -76,15 +79,16 @@ Como este projeto é estritamente uma API REST (Back-end), as "telas" da aplica�
 A interface do Swagger permite visualizar e testar todas as rotas listadas acima diretamente pelo navegador.
 * **Link para teste:** `http://localhost:8000/api/docs/`
 
-![Tela do Swagger]([INSERIR_O_NOME_DA_SUA_IMAGEM_DO_SWAGGER_AQUI.png])  
+![Tela Exemplo 1 do Swagger]([tela1.png])  
+![Tela Exemplo 2 do Swagger]([tela2.png])  
 *(Exemplo de teste funcional interativo via Swagger)*
 
 ### 2. Painel Administrativo (Django Admin)
 Interface gráfica gerada para gerenciamento direto do banco de dados (MySQL), permitindo a inserção e verificação visual dos dados.
 * **Link para teste:** `http://localhost:8000/admin/`
-* **Credenciais de Teste:** Usuário: `admin` | Senha: `admin12345`
+* **Credenciais de Teste:** Usuário: `admin` | Senha: `adminsenha`
 
-![Tela do Django Admin]([INSERIR_O_NOME_DA_SUA_IMAGEM_DO_ADMIN_AQUI.png])  
+![Tela do Django Admin]([tela3.png])  
 *(Visão geral e gerenciamento dos modelos do RPG no banco de dados)*
 
 ## 📚 Objetivo

@@ -25,11 +25,7 @@ class Pessoa(models.Model):
     class Meta:
         db_table = 'pessoa'
 
-class Aluno(Pessoa):
-    moedas = models.IntegerField(default=0)
 
-    class Meta:
-        db_table = 'aluno'
 
 class Professor(Pessoa):
 
@@ -43,6 +39,12 @@ class Item(models.Model):
 
     class Meta:
         db_table = 'item'
+        
+class Aluno(Pessoa):
+    moedas = models.IntegerField(default=0)
+    itens = models.ManyToManyField(Item, related_name='alunos', blank=True)
+    class Meta:
+        db_table = 'aluno'
 
 class Disciplina(models.Model):
     nome = models.CharField(max_length=100)

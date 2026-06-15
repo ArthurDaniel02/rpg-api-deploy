@@ -13,13 +13,20 @@ class AlunoDAOMysql:
 
     def alterar(self, a):
         m = AlunoModel.objects.get(id=a.getIdPessoa()) 
-        
+        from api.models import Item as ItemModel
         if a.getNome() is not None: m.nome = a.getNome()
         if a.getCpf() is not None: m.cpf = a.getCpf()
         if a.getConta() is not None: m.conta_id = a.getConta()
         if a.getMoedas() is not None: m.moedas = a.getMoedas()
         
         m.save()
+        if hasattr(a, 'getItens') and a.getItens():
+            for item_dominio in a.getItens():
+                try:
+                    item_bd = ItemModel.objects.get(id=item_dominio.getIdItem())
+                    m.itens.add(item_bd) 
+                except ItemModel.DoesNotExist:
+                    continue
         return True
 
     def deletar(self, a):
@@ -35,10 +42,8 @@ class AlunoDAOMysql:
         except:
             return None
         
-    def consultarItens(self, a):
-        try:
-            m = AlunoModel.objects.get(id=a.getIdPessoa())
-          
-            return list(m.itens.all().values()) 
-        except Exception:
-            return []
+    def consultarItens(self, a): 
+        m = AlunoModel.objects.get(id=a.getIdPessoa())
+   
+        return list(m.itens.all().values())
+        

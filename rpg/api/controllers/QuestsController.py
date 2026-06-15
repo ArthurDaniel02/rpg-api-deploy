@@ -105,29 +105,45 @@ class QuestsControllerImpl(IQuestsController):
             resposta_certa = quest_data.get('resposta_correta', '').strip().upper()
             resposta_enviada = str(resposta_aluno).strip().upper()
             valor_premio = quest_data.get('recompensa', 50)
-            if resposta_enviada == resposta_certa:
-                if self._aluno_dao:
-                    a_req = Aluno()
-                    a_req.setIdPessoa(aluno_id)
-                    aluno_data = self._aluno_dao.consultarbyId(a_req)
-                    
-                    if aluno_data:
-                        a_obj = Aluno()
-                        a_obj.setIdPessoa(aluno_data['id'])
-                        a_obj.setNome(aluno_data['nome'])
-                        a_obj.setCpf(aluno_data['cpf'])
-                        a_obj.addConta(aluno_data.get('conta_id'))
-                        
-                        novo_saldo = aluno_data.get('moedas', 0) + valor_premio
-                        a_obj.setMoedas(novo_saldo)
-                        self._aluno_dao.alterar(a_obj)
-                        
-                        return {"data": {"mensagem": "Acerto Crítico! Você ganhou {valor_premio} moedas.", "saldo_atual": novo_saldo}, "status": 200}
-                
-                return {"data": {"mensagem": "Resposta Correta!"}, "status": 200}
-            
-            else:
+
+
+            if resposta_enviada != resposta_certa:
                 return {"data": {"erro": "Resposta incorreta. Tente novamente!"}, "status": 400}
+            
+           
+            if not self._aluno_dao:
+                return {"data": {"erro": "Erro de infraestrutura: O DAO do Aluno não foi injetado no QuestsController."}, "status": 500}
+
+            
+            a_req = Aluno()
+            a_req.setIdPessoa(aluno_id)
+            aluno_data = self._aluno_dao.consultarbyId(a_req)
+            
+            if not aluno_data:
+                return {"data": {"erro": f"Aluno com ID {aluno_id} não foi encontrado no banco de dados para receber a recompensa."}, "status": 404}
+            
+            
+            a_obj = Aluno()
+            a_obj.setIdPessoa(aluno_data['id'])
+            a_obj.setNome(aluno_data['nome'])
+            a_obj.setCpf(aluno_data['cpf'])
+            a_obj.addConta(aluno_data.get('conta_id'))
+            
+           
+            novo_saldo = aluno_data.get('moedas', 0) + valor_premio
+            a_obj.setMoedas(novo_saldo)
+            
+            
+            self._aluno_dao.alterar(a_obj)
+            
+
+            return {
+                "data": {
+                    "mensagem": f"Acerto Crítico! Você ganhou {valor_premio} moedas.", 
+                    "saldo_atual": novo_saldo
+                }, 
+                "status": 200
+            }
 
         except Exception as e:
             return {"data": {"erro": f"Erro interno ao responder: {str(e)}"}, "status": 500}

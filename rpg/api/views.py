@@ -238,6 +238,7 @@ def quests_detail(request, pk):
 def quests_responder(request):
     dao = inject('IQuestsDAO')
     ctrl = inject('IQuestsController', dao_instance=dao)
+    ctrl._aluno_dao = inject('IAlunoDAO')
     res = ctrl.responderQuest(request)
     return JsonResponse(res['data'], status=res['status'])
 
