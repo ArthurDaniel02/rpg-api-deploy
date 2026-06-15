@@ -59,7 +59,7 @@ Abaixo estão as principais rotas desenvolvidas para atender as regras de negóc
 * `GET /api/quests/<id>/` - Consultar por ID.
 * `PUT /api/quests/<id>/` - Alterar quest.
 * `DELETE /api/quests/<id>/` - Deletar quest.
-* `POST /api/quests/responder/` - Responder Quest (Valida a resposta do aluno).
+* `POST /api/quests/responder/` - Responder Quest (Valida a resposta do aluno e distribui recompensas).
 
 ### 8. ITEM
 * `POST /api/item/` - Salvar (Cria um novo item na loja).
@@ -68,9 +68,9 @@ Abaixo estão as principais rotas desenvolvidas para atender as regras de negóc
 * `PUT /api/item/<id>/` - Alterar item.
 * `DELETE /api/item/<id>/` - Deletar item.
 
-## 🖥️ Telas da Aplicação (Testes Funcionais)
+## Telas da Aplicação (Testes Funcionais)
 
-Como este projeto é estritamente uma API REST (Back-end), as "telas" da aplicação consistem nas interfaces de documentação e administração gráfica.
+Como este projeto é estritamente uma API REST (Back-end), as "telas" da aplicação consistem nas interfaces de documentação e administração.
 
 ### 1. Swagger UI (Documentação Interativa)
 A interface do Swagger permite visualizar e testar todas as rotas listadas acima diretamente pelo navegador.

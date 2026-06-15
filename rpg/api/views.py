@@ -138,7 +138,6 @@ def personagem_list(request):
     dao = inject('IPersonagemDAO')
     ctrl = inject('IPersonagemController', dao_instance=dao)
     
-    # Injetando as fábricas
     ctrl._mago_dao = inject('IMagoDAO')
     ctrl._guerreiro_dao = inject('IGuerreiroDAO')
     ctrl._arqueiro_dao = inject('IArqueiroDAO')

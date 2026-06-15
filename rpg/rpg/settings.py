@@ -194,22 +194,8 @@ SPECTACULAR_SETTINGS = {
     * `GET /api/item/<id>/` - Consultar por ID.
     * `PUT /api/item/<id>/` - Alterar item.
     * `DELETE /api/item/<id>/` - Deletar item.
-    ### Autenticação
-    Use o endpoint `/api/token/` para obter seu token e inclua no cabeçalho:
-    ```
-    Authorization: Token <sua_chave>
-    ```
     """),
-    'VERSION': '1.0.0',
-    'SECURITY': [{'TokenAuth': []}],
-    'COMPONENTS': {
-    'securitySchemes': {
-    'TokenAuth': {
-    'type': 'apiKey',
-    'in': 'header',
-    'name': 'Authorization',
-    'description': 'Use o formato: Token <sua_chave>',
-    },
-    },
-    },
+
+    
+    
 }
