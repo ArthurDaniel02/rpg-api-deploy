@@ -1,4 +1,4 @@
-# RPG EDUCACIONAL API REST 🚀
+# RPG EDUCACIONAL API REST 
 
 ** [TESTE A API HOSPEDADA NO SWAGGER CLICANDO AQUI](https://rpg-api-deploy.onrender.com/api/docs/) **
 
@@ -6,7 +6,7 @@ Este projeto consiste em uma API REST desenvolvida em **Python** utilizando **Dj
 
 O foco é a aplicação prática de **Polimorfismo, Inversão de Dependência e Arqauitetura em Camadas**, utilizando interfaces baseadas em Classes Abstratas para simular contratos e injeção dinâmica de implementações.
 
-## 🗺️ Rotas REST Implementadas
+##  Rotas REST Implementadas
 
 Abaixo estão as principais rotas desenvolvidas para atender as regras de negócio do RPG Educacional. Todas recebem e retornam dados em formato JSON.
 
@@ -93,7 +93,7 @@ Interface gráfica gerada para gerenciamento direto do banco de dados (MySQL), p
 ![Tela do Django Admin](docs/tela3.png)  
 *(Visão geral e gerenciamento dos modelos do RPG no banco de dados)*
 
-## 📚 Objetivo
+##  Objetivo
 
 Demonstrar a aplicação de padrões de projeto e princípios de POO em um framework (Django), garantindo:
 
@@ -101,7 +101,7 @@ Demonstrar a aplicação de padrões de projeto e princípios de POO em um frame
 * **Polimorfismo:** Troca dinâmica de implementações via `config.py`.
 * **Contratos:** Uso de classes base para definir comportamentos obrigatórios.
 
-## 🧠 Estratégia Polimórfica
+##  Estratégia Polimórfica
 
 O projeto organiza a lógica de persistência e controle em três partes:
 
